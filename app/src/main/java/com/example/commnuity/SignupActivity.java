@@ -46,6 +46,7 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
+    //임시용
     public void SignupListener(){
         Signup_Button.setOnClickListener(new View.OnClickListener(){
             @Override
