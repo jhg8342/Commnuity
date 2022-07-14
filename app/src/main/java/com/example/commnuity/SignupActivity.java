@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.HashMap;
+
 public class SignupActivity extends AppCompatActivity {
 
     private EditText Email_Text;
@@ -31,10 +33,11 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
         RecallView();
         BackListener();
         SignupListener();
+
+
     }
 
 
@@ -50,6 +53,7 @@ public class SignupActivity extends AppCompatActivity {
         Phone_Text = findViewById(R.id.sign_password_text);
         Signup_Button = findViewById(R.id.sign_next_button);
         Back_Button = findViewById(R.id.sign_BACK_button);
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     public void BackListener(){
@@ -67,21 +71,27 @@ public class SignupActivity extends AppCompatActivity {
         Signup_Button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                String Emailinfo = Email_Text.getText().toString().trim();
-                String Pwdinfo = PWD_Text.getText().toString().trim();
-                String Nameinfo = Name_Text.getText().toString().trim();
-                String Phoneinfo = Phone_Text.getText().toString().trim();
+                String email = Email_Text.getText().toString().trim();
+                String pwd = PWD_Text.getText().toString().trim();
+                String name = Name_Text.getText().toString().trim();
+                String phone = Phone_Text.getText().toString().trim();
 
-                firebaseAuth.createUserWithEmailAndPassword(Emailinfo,Pwdinfo)
+                firebaseAuth.createUserWithEmailAndPassword(email,pwd)
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-
                                 if(task.isSuccessful()){
 
-                                    Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                                    HashMap result = new HashMap<>();
+                                    result.put("Email_info", email);
+                                    result.put("Pwd_info", pwd);
+                                    result.put("Name_info",name);
+                                    result.put("Phone_info",phone);
+
+                                    Toast.makeText(SignupActivity.this,"회원가입이 성공적으로 되었습니다.",Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                                     startActivity(intent);
                                     finish();
+
                                 }else{
                                     Toast.makeText(SignupActivity.this,"Fail to Sign up", Toast.LENGTH_SHORT).show();
                                     return;
@@ -91,6 +101,8 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
 
 
