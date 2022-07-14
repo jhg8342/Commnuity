@@ -5,8 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -16,6 +23,9 @@ public class SignupActivity extends AppCompatActivity {
     private EditText Phone_Text;
     private Button Signup_Button;
     private Button Back_Button;
+    //파이어베이스 변수 선언
+    private FirebaseAuth firebaseAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -27,6 +37,12 @@ public class SignupActivity extends AppCompatActivity {
         SignupListener();
     }
 
+
+
+
+
+
+    //
     public void RecallView(){
         Email_Text = findViewById(R.id.sign_email_text);
         PWD_Text = findViewById(R.id.sign_password_text);
@@ -51,8 +67,27 @@ public class SignupActivity extends AppCompatActivity {
         Signup_Button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent signup = new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(signup);
+                String Emailinfo = Email_Text.getText().toString().trim();
+                String Pwdinfo = PWD_Text.getText().toString().trim();
+                String Nameinfo = Name_Text.getText().toString().trim();
+                String Phoneinfo = Phone_Text.getText().toString().trim();
+
+                firebaseAuth.createUserWithEmailAndPassword(Emailinfo,Pwdinfo)
+                        .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                if(task.isSuccessful()){
+
+                                    Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }else{
+                                    Toast.makeText(SignupActivity.this,"Fail to Sign up", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            }
+                        });
             }
         });
     }
