@@ -6,34 +6,25 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
+        android:id="@+id/login_subject"
         android:layout_width="wrap_content"
-        android:layout_height="61dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="103dp"
         android:layout_marginTop="135dp"
         android:fontFamily="@font/sanghu_dajungdagam"
         android:text="Community for Group"
         android:textColor="#5D5D5D"
         android:textSize="30dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="87dp" />
-
+        android:textStyle="bold"/>
 
 
     <EditText
         android:id="@+id/login_text_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="131dp"
-        android:layout_marginTop="307dp"
+        android:layout_below="@+id/login_subject"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="123dp"
         android:ems="10"
         android:fontFamily="@font/sanghu_dajungdagam"
         android:hint="Enter the ID"
@@ -41,21 +32,17 @@
         android:singleLine="true"
         android:textColor="#5D5D5D"
         android:textSize="15dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="87dp" />
+        android:textStyle="bold"/>
+
+
 
     <EditText
         android:id="@+id/login_text_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="345dp"
+        android:layout_below="@+id/login_text_id"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:fontFamily="@font/sanghu_dajungdagam"
         android:hint="Enter the password"
@@ -63,79 +50,79 @@
         android:singleLine="true"
         android:textColor="#5D5D5D"
         android:textSize="15dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="87dp" />
+        android:textStyle="bold" />
 
-    <CheckBox
-        android:id="@+id/login_idsave_checkbox"
+    <LinearLayout
+        android:id="@+id/login_linear_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="130dp"
-        android:layout_marginBottom="317dp"
-        android:fontFamily="@font/sangju_haerye"
-        android:text="Save ID"
-        android:textSize="10sp" />
+        android:layout_below="@+id/login_text_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="14dp">
 
+        <CheckBox
+            android:id="@+id/login_idsave_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-    <CheckBox
-        android:id="@+id/login_autologin_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="201dp"
-        android:layout_marginBottom="317dp"
-        android:fontFamily="@font/sangju_haerye"
-        android:text="Auto Login"
-        android:textSize="10sp" />
+            android:fontFamily="@font/sangju_haerye"
+            android:text="Save ID"
+            android:textSize="10sp" />
+
+        <CheckBox
+            android:id="@+id/login_autologin_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/sangju_haerye"
+            android:text="Auto Login"
+            android:textSize="10sp" />
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/login_login_Button"
         android:layout_width="194dp"
         android:layout_height="38dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/login_linear_checkbox"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="107dp"
-        android:layout_marginBottom="272dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/solid_button"
         android:fontFamily="@font/sangju_gotgam"
         android:text="로그인" />
 
-    <Button
-        android:id="@+id/login_signup_Button"
-        android:layout_width="76dp"
-        android:layout_height="33dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/login_login_Button"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="106dp"
-        android:layout_marginBottom="234dp"
-        android:background="@drawable/solid_button"
-        android:fontFamily="@font/sangju_gotgam"
-        android:text="회원가입"
+        android:layout_marginTop="10dp">
+        <Button
+            android:id="@+id/login_signup_Button"
+            android:layout_width="76dp"
+            android:layout_height="33dp"
+            android:background="@drawable/solid_button"
+            android:fontFamily="@font/sangju_gotgam"
+            android:text="회원가입"
 
-        android:textSize="10sp" />
+            android:textSize="10sp" />
+        <Button
+            android:id="@+id/login_find_Button"
+            android:layout_width="108dp"
+            android:layout_height="33dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/solid_button"
+            android:fontFamily="@font/sangju_gotgam"
+            android:text="비밀번호 찾기"
+            android:textSize="10sp" />
 
-    <Button
-        android:id="@+id/login_find_Button"
-        android:layout_width="108dp"
-        android:layout_height="33dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="193dp"
-        android:layout_marginBottom="234dp"
-        android:background="@drawable/solid_button"
-        android:fontFamily="@font/sangju_gotgam"
-        android:text="비밀번호 찾기"
 
-        android:textSize="10sp" />
+    </LinearLayout>
+
+
+
+
 
 
 </RelativeLayout>
